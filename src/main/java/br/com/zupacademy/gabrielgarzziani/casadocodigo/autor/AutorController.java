@@ -1,5 +1,7 @@
 package br.com.zupacademy.gabrielgarzziani.casadocodigo.autor;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +17,7 @@ public class AutorController {
 	private AutorRepository autorRepository;
 
 	@PostMapping
-	public ResponseEntity<AutorDto> cadastro(@RequestBody AutorForm form) {
+	public ResponseEntity<AutorDto> cadastro(@Valid @RequestBody AutorForm form) {
 		Autor autor = form.map();
 		autorRepository.save(autor);
 		return ResponseEntity.ok(new AutorDto(autor));
