@@ -13,6 +13,7 @@ public class AutorForm {
 	@Email
 	private String email;
 	@Size(max = 400)
+	@NotBlank
 	private String descricao;
 	
 	public String getNome() {

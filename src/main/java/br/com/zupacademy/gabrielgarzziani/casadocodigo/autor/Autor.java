@@ -24,6 +24,7 @@ public class Autor {
 	@Email
 	private String email;
 	@Size(max = 400)
+	@NotBlank
 	private String descricao;
 	@NotNull
 	@PastOrPresent
@@ -33,7 +34,7 @@ public class Autor {
 	public Autor() {
 	}
 		
-	public Autor(@NotBlank String nome, @NotBlank @Email String email, @Size(max = 400) String descricao,
+	public Autor(@NotBlank String nome, @NotBlank @Email String email, @NotBlank @Size(max = 400) String descricao,
 			@PastOrPresent LocalDateTime instanteCriacao) {
 		this.nome = nome;
 		this.email = email;
