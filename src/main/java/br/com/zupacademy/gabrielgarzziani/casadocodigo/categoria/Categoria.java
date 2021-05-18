@@ -1,5 +1,6 @@
 package br.com.zupacademy.gabrielgarzziani.casadocodigo.categoria;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ public class Categoria {
 	private Long id;
 	
 	@NotEmpty
+	@Column(unique = true)
 	private String nome;
 	
 	public Categoria(@NotEmpty String nome) {
