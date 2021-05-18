@@ -6,11 +6,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.UniqueValue;
+
 public class AutorForm {
 	@NotBlank
 	private String nome;
 	@NotBlank
 	@Email
+	@UniqueValue(domainClass = Autor.class,fieldName = "email")
 	private String email;
 	@Size(max = 400)
 	@NotBlank

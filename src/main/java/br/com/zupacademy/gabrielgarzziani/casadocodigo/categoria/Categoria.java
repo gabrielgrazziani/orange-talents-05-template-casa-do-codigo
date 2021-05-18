@@ -17,6 +17,10 @@ public class Categoria {
 	@NotEmpty
 	@Column(unique = true)
 	private String nome;
+
+	@Deprecated
+	public Categoria() {
+	}
 	
 	public Categoria(@NotEmpty String nome) {
 		this.nome = nome;
