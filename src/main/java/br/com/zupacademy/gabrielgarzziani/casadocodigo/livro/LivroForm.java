@@ -43,43 +43,17 @@ public class LivroForm {
 	@ExistById(domainClass = Autor.class)
 	private Long autorId;
 	
-	
-	
-	public void setTitulo(String titulo) {
+	public LivroForm(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotNull String sumario,
+			@NotNull @Min(20) BigDecimal preco, @Min(100) int numeroPaginas, @NotBlank String isbn,
+			@NotNull @Future LocalDate dataPublicacao, @NotNull Long categoriaId, @NotNull Long autorId) {
 		this.titulo = titulo;
-	}
-
-	public void setResumo(String resumo) {
 		this.resumo = resumo;
-	}
-
-	public void setSumario(String sumario) {
 		this.sumario = sumario;
-	}
-
-
-
-	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
-	}
-
-	public void setNumeroPaginas(int numeroPaginas) {
 		this.numeroPaginas = numeroPaginas;
-	}
-
-	public void setIsbn(String isbn) {
 		this.isbn = isbn;
-	}
-
-	public void setDataPublicacao(LocalDate dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
-	}
-
-	public void setCategoriaId(Long categoriaId) {
 		this.categoriaId = categoriaId;
-	}
-
-	public void setAutorId(Long autorId) {
 		this.autorId = autorId;
 	}
 

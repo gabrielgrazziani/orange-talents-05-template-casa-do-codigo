@@ -2,6 +2,9 @@ package br.com.zupacademy.gabrielgarzziani.casadocodigo.categoria;
 
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.UniqueValue;
 
 public class CategoriaForm {
@@ -10,12 +13,9 @@ public class CategoriaForm {
 	@UniqueValue(domainClass = Categoria.class,fieldName = "nome")
 	private String nome;
 	
-	public void setNome(String nome) {
+	@JsonCreator(mode = Mode.PROPERTIES)
+	public CategoriaForm(String nome) {
 		this.nome = nome;
-	}
-	
-	public String getNome() {
-		return nome;
 	}
 	
 	public Categoria map() {
