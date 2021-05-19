@@ -5,10 +5,9 @@ public class LivroDto {
 	private Long id;
 	private String titulo;
 	
-	public LivroDto(Long id, String titulo) {
-		super();
-		this.id = id;
-		this.titulo = titulo;
+	public LivroDto(Livro livro) {
+		this.id = livro.getId();
+		this.titulo = livro.getTitulo();
 	}
 
 	public Long getId() {

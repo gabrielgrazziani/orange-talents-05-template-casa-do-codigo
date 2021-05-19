@@ -11,6 +11,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,12 +36,21 @@ public class LivroController {
 	
 	@Transactional
 	@GetMapping
-	public ResponseEntity<?> lista() {
+	public ResponseEntity<List<LivroDto>> lista() {
 		TypedQuery<Livro> query = entityManager.createQuery("select l from Livro l", Livro.class);
 		List<Livro> list = query.getResultList();
 		List<LivroDto> listDto = list.stream()
-			.map(l -> new LivroDto(l.getId(),l.getTitulo()))
+			.map(LivroDto::new)
 			.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDto);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<LivroDetalheDto> detelhes(@PathVariable Long id) {
+		Livro livro = entityManager.find(Livro.class, id);
+		if(livro == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(new LivroDetalheDto(livro));
 	}
 }
