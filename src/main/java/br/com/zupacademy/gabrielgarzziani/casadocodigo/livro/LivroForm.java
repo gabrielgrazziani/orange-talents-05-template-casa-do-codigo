@@ -10,6 +10,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.ISBN;
+import org.hibernate.validator.constraints.ISBN.Type;
+
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.autor.Autor;
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.categoria.Categoria;
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.ExistById;
@@ -32,6 +35,7 @@ public class LivroForm {
 	private int numeroPaginas;
 	@NotBlank
 	@UniqueValue(domainClass = Livro.class,fieldName = "isbn")
+	@ISBN(type = Type.ANY)
 	private String isbn;
 	@NotNull
 	@Future
@@ -44,7 +48,7 @@ public class LivroForm {
 	private Long autorId;
 	
 	public LivroForm(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotNull String sumario,
-			@NotNull @Min(20) BigDecimal preco, @Min(100) int numeroPaginas, @NotBlank String isbn,
+			@NotNull @Min(20) BigDecimal preco, @Min(100) int numeroPaginas, @ISBN(type = Type.ANY) @NotBlank String isbn,
 			@NotNull @Future LocalDate dataPublicacao, @NotNull Long categoriaId, @NotNull Long autorId) {
 		this.titulo = titulo;
 		this.resumo = resumo;

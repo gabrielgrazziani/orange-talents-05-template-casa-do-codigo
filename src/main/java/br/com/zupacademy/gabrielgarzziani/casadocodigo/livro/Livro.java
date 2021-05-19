@@ -16,6 +16,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.ISBN;
+import org.hibernate.validator.constraints.ISBN.Type;
+
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.autor.Autor;
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.categoria.Categoria;
 
@@ -39,6 +42,7 @@ public class Livro {
 	@Min(100)
 	private int numeroPaginas;
 	@NotBlank
+	@ISBN(type = Type.ANY)
 	@Column(unique = false)
 	private String isbn;
 	@NotNull
