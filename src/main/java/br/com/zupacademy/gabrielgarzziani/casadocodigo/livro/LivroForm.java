@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.autor.Autor;
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.categoria.Categoria;
-import br.com.zupacademy.gabrielgarzziani.casadocodigo.config.validacao.ErroDeValidacaoException;
+import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.ExistById;
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.UniqueValue;
 
 public class LivroForm {
@@ -37,8 +37,10 @@ public class LivroForm {
 	@Future
 	private LocalDate dataPublicacao;
 	@NotNull
+	@ExistById(domainClass = Categoria.class)
 	private Long categoriaId;
 	@NotNull
+	@ExistById(domainClass = Autor.class)
 	private Long autorId;
 	
 	
@@ -83,11 +85,7 @@ public class LivroForm {
 
 	public Livro map(EntityManager entityManager) {
 		Categoria categoria = entityManager.find(Categoria.class, categoriaId);
-		if(categoria == null) throw new ErroDeValidacaoException("categoriaId", "Não existe uma categoria com id "+categoriaId);
-		
 		Autor autor = entityManager.find(Autor.class, autorId);
-		if(autor == null) throw new ErroDeValidacaoException("autorId", "Não existe um autor com id "+autorId);
-		
 		
 		return new Livro(
 				titulo,

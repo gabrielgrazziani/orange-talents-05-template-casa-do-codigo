@@ -29,7 +29,7 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, Ob
 		Query createQuery = entityManager.createQuery(query);	
 		createQuery.setParameter("pValue", value);
 		List<?> list = createQuery.getResultList();
-		Assert.isTrue(list.size() <=1,"Foi encontrdo mais de um "+ clazz.getName() +" com o atributo "+domainAttribute);
+		Assert.state(list.size() <=1,"Foi encontrdo mais de um "+ clazz.getName() +" com o atributo "+domainAttribute);
 		return list.isEmpty();
 	}
 
