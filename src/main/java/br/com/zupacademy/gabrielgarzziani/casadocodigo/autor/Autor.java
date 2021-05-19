@@ -33,7 +33,8 @@ public class Autor {
 	private LocalDateTime instanteCriacao;
 
 	@Deprecated
-	public Autor() {
+	@SuppressWarnings("unused")
+	private Autor() {
 	}
 		
 	public Autor(@NotBlank String nome, @NotBlank @Email String email, @NotBlank @Size(max = 400) String descricao,

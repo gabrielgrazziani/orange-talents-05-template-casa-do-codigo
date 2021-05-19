@@ -19,7 +19,8 @@ public class Categoria {
 	private String nome;
 
 	@Deprecated
-	public Categoria() {
+	@SuppressWarnings("unused")
+	private Categoria() {
 	}
 	
 	public Categoria(@NotEmpty String nome) {

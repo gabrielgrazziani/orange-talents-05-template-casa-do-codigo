@@ -54,7 +54,8 @@ public class Livro {
 	private Autor autor;
 
 	@Deprecated
-	public Livro() {
+	@SuppressWarnings("unused")
+	private Livro() {
 	}
 
 	public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotNull String sumario,
