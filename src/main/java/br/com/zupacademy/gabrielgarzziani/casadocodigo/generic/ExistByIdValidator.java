@@ -5,6 +5,12 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+/**
+ * Caso o campo seja nulo a validação ira passar
+ * 
+ * @author gabriel.barbosa
+ *
+ */
 
 public class ExistByIdValidator implements ConstraintValidator<ExistById, Object>{
 
@@ -22,6 +28,7 @@ public class ExistByIdValidator implements ConstraintValidator<ExistById, Object
 	
 	@Override
 	public boolean isValid(Object primaryKey, ConstraintValidatorContext context) {
+		if(primaryKey == null) return true;
 		Query query = entityManager.createQuery("select c."+namePrimaryKey+" from "+clazz.getName()+" c where c."+namePrimaryKey+" = :primaryKey");
 		query.setParameter("primaryKey", primaryKey);
 		return !query.getResultList().isEmpty();

@@ -31,5 +31,9 @@ public class Estado {
 		this.nome = nome;
 		this.pais = pais;
 	}
+	
+	public Pais getPais() {
+		return pais;
+	}
 
 }
