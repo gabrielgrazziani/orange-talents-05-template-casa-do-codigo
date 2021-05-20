@@ -17,7 +17,7 @@ public class Estado {
 	private Long id;
 	
 	@NotBlank
-	@Column(unique = true)
+	@Column
 	private String nome;
 	@NotNull
 	@ManyToOne(optional = false)

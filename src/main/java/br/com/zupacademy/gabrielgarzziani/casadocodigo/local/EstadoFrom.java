@@ -5,7 +5,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.ExistById;
-import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.UniqueValue;
 
 public class EstadoFrom {
 	
@@ -13,7 +12,6 @@ public class EstadoFrom {
 	@ExistById(domainClass = Pais.class)
 	private Long paisId;
 	@NotBlank
-	@UniqueValue(domainClass = Estado.class,fieldName = "nome")
 	private String nome;
 	
 	public EstadoFrom(Long paisId, String nome) {
@@ -24,5 +22,13 @@ public class EstadoFrom {
 	public Estado map(EntityManager entityManager) {
 		Pais pais = entityManager.find(Pais.class, paisId);
 		return new Estado(nome,pais);
+	}
+
+	public Long getPaisId() {
+		return paisId;
+	}
+	
+	public String getNome() {
+		return nome;
 	}
 }
