@@ -1,7 +1,7 @@
 package br.com.zupacademy.gabrielgarzziani.casadocodigo.config.validacao;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -21,13 +21,22 @@ public class ErroDeValidacaoHandler {
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 	public List<ErroDeFormularioDto> handler(MethodArgumentNotValidException exception) {
-		return exception.getBindingResult().getFieldErrors()
-			.stream()
-			.map(f ->{
+		List<ErroDeFormularioDto> erros = new ArrayList<>();
+		
+		exception.getBindingResult().getGlobalErrors()
+			.forEach(e -> {
+				String message = messageSource.getMessage(e, LocaleContextHolder.getLocale());
+				ErroDeFormularioDto dto = new ErroDeFormularioDto(e.getCode(),message);
+				erros.add(dto);
+			});
+		
+		exception.getBindingResult().getFieldErrors()
+			.forEach(f ->{
 				String message = messageSource.getMessage(f, LocaleContextHolder.getLocale());
-				return new ErroDeFormularioDto(f.getField(),message);
-			})
-			.collect(Collectors.toList());
+				ErroDeFormularioDto dto = new ErroDeFormularioDto(f.getField(),message);
+				erros.add(dto);
+			});
+		return erros;
 	}
 	
 	@ExceptionHandler(ErroDeValidacaoException.class)

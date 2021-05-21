@@ -8,10 +8,12 @@ import com.sun.istack.NotNull;
 
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.CpfOuCnpj;
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.ExistById;
+import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.LocalValido;
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.generic.UniqueValue;
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.local.Estado;
 import br.com.zupacademy.gabrielgarzziani.casadocodigo.local.Pais;
 
+@LocalValido
 public class ClienteForm {
 
 	@Email
